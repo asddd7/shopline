@@ -23,10 +23,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
+        Route::get('/outlets', [DashboardController::class, 'outlets'])->name('outlets.index');
+        Route::get('/outlets/register', [DashboardController::class, 'createOutlet'])->name('outlets.create');
     });
 
     Route::prefix('sales')->name('sales.')->middleware('role:sales')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'sales'])->name('dashboard');
+        Route::get('/outlets', [DashboardController::class, 'outlets'])->name('outlets.index');
+        Route::get('/outlets/register', [DashboardController::class, 'createOutlet'])->name('outlets.create');
     });
 });
 
